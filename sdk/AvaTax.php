@@ -19,6 +19,11 @@ function __autoload($class_name)
 	if(!file_exists($path))
 		$path=dirname(__FILE__).'/classes/AvaCert2Svc/'.$class_name . '.class.php';
 
+    // If we can't find the file we should return rather than attempting to require
+    // something we know does not exist
+    if(!file_exists($path))
+        return;
+
 	require_once $path;
 }
 

@@ -40,7 +40,7 @@ class AvalaraTax extends Module
     {
         $this->name = 'avalaratax';
         $this->tab = 'billing_invoicing';
-        $this->version = '3.5.7';
+        $this->version = '3.5.8';
         $this->author = 'PrestaShop';
         parent::__construct();
 
@@ -2115,9 +2115,16 @@ function avalaraAutoload($className)
 {
     $className = str_replace(chr(0), '', $className);
     if (!preg_match('/^\w+$/', $className)) {
-        // die('Invalid classname.');
         // Instead of dying, we simply do not autolaod classes that
         // do not match our expected naming convention
+        return;
+    }
+
+    if (preg_match('/_/', $className)) {
+        // None of our classes contain underscores, however a lot of namespaced classes
+        // will have the format of Namespace_ClassName
+        // Therefore, to improve performance we can return now rather than attempting to
+        // check the existence of files that we know will not exist within our module
         return;
     }
 
