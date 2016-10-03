@@ -40,8 +40,9 @@ class AvalaraTax extends Module
     {
         $this->name = 'avalaratax';
         $this->tab = 'billing_invoicing';
-        $this->version = '3.5.8';
-        $this->author = 'PrestaShop';
+        $this->version = '3.5.9';
+        $this->author = 'NuRelm';
+        $this->module_key = '4e58b0c0a11bc32e1ad35a1fccc8a1f4';
         parent::__construct();
 
         $this->tax_manager_class = "AvalaraTaxManager";
